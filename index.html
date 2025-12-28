@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Login</title>
+</head>
+<body>
+
+<h2>User Login System</h2>
+
+<input type="text" id="username" placeholder="Username"><br><br>
+<input type="password" id="password" placeholder="Password"><br><br>
+
+<button onclick="register()">Register</button>
+<button onclick="login()">Login</button>
+
+<p id="result"></p>
+
+<script>
+const API = "http://localhost:3000";
+
+function register() {
+    fetch(API + "/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            username: username.value,
+            password: password.value
+        })
+    })
+    .then(res => res.text())
+    .then(data => result.innerText = data);
+}
+
+function login() {
+    fetch(API + "/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            username: username.value,
+            password: password.value
+        })
+    })
+    .then(res => res.text())
+    .then(data => result.innerText = data);
+}
+</script>
+
+</body>
+</html>
